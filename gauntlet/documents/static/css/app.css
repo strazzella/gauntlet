@@ -4,6 +4,7 @@ html {
   height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
+  font-size: 62.5%;
 }
 a {
   color:inherit;
@@ -35,7 +36,7 @@ input, input:focus{
 }
 h1 {
   font-family: 'Iceland', sans-serif;
-  font-size: 10em;
+  font-size: 16rem;
   color: #30b700;
   font-weight: 400;
 }
@@ -163,7 +164,7 @@ h1 {
   right: 20px;
   top: 10px;
   padding: 25px;
-  font-wieght: 100;
+  font-weight: 100;
   color: white;
 }
 .global-wrapper main #stage {
@@ -229,6 +230,7 @@ input[type="submit"] {
   color: rgb(48, 183, 0);
   font-weight: bold;
   transition: all .3s;
+  font-size: 1.4rem;
 }
 input[type="submit"]:hover {
   background-color: rgba(48, 183, 0, 0.8);
@@ -314,7 +316,7 @@ input[type="text"],input[type="password"],input[type="email"] {
   overflow: auto;
 }
 #main.index-content h2 {
-  font-size: font-family: "Open Sans", sans-serif;
+  font-family: "Open Sans", sans-serif;
   color: rgba(0,0,0,0.7);
   font-size: 1.6em;
 }
@@ -333,7 +335,7 @@ input[type="text"],input[type="password"],input[type="email"] {
 }
 #main p {
   color: rgba(0,0,0,0.6);
-  font-size: 1.3rem;
+  font-size: 2.2rem;
   font-family: "Open Sans", sans-serif;
 }
 .current-docs ul li {
@@ -344,14 +346,14 @@ input[type="text"],input[type="password"],input[type="email"] {
   transition: all .4s ease;
 }
 .current-docs ul li a {
-  transition: all .s ease;
+  transition: all .3s ease;
 }
 .current-docs ul li a:hover {
   color:rgba(0,0,0,0.6);
 }
 .index h1 {
   font-family: 'Iceland', sans-serif;
-  font-size: 10em;
+  font-size: 16rem;
   color: #30b700;
   font-weight: 400;
 }
@@ -361,6 +363,10 @@ input[type="text"],input[type="password"],input[type="email"] {
 .index-content {
   margin-top: 8%;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .logo a {
   display: block;
@@ -372,12 +378,12 @@ input[type="text"],input[type="password"],input[type="email"] {
 #create-form-index {
   display: inline-block;
   margin: 0 auto;
-  width: 35%;
+  width: 50%;
 }
 #create-form-login {
   display: inline-block;
   margin: 0 auto;
-  width: 35%;
+  width: 50%;
 }
 .current-docs {
   margin-top: 40px;
@@ -446,4 +452,13 @@ color: rgba(0,0,0,0.8);
 }
 input[type="text"], input[type="password"], input[type="email"] {
   color: rgba(0,0,0,0.8);
+}
+/* MEDIA QUERY */
+@media only screen and (max-width: 425px) {
+#create-form-index {
+  width: 100%;
+}
+#create-form-login {
+  width: 100%;
+}
 }

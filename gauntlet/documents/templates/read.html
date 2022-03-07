@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{ document.title }} - Gauntlet</title>
+</head>
+<body>
+	{% load static %}
+	<meta content="ie=edge" http-equiv="x-ua-compatible">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<meta charset="UTF-8">
+	<link href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css" rel="stylesheet">
+	<link href="{% static 'css/app.css' %}" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"><!-- Side Menu -->
+	<section class='global-wrapper'>
+		<aside>
+			<div class="logo">
+				<h1><a href="{% url 'index' %}">G</a></h1>
+			</div><!--top nav -->
+			<ul>
+				<li data-open="create1">
+					<div class="nav-item">
+						<i aria-hidden="true" class="fa fa-file"></i> <span>New Doc</span>
+					</div>
+				</li>
+				<li>
+					<div class="nav-item">
+						<i aria-hidden="true" class="fa fa-link"></i> <span>All Links</span>
+						<ul class="links-list">
+							<li style="list-style: none">{% for document in all_docs %}</li>
+							<li class="truncate">
+								<a href="{% url 'read' document.pk %}">{{ document.title }}</a>
+							</li>
+							<li style="list-style: none">{% endfor %}</li>
+						</ul>
+					</div>
+				</li>
+			</ul><!--bottom nav -->
+			<div id="bottom-nav" style="margin-left: 2em">
+				<a href="{% url 'logout' %}">
+				<ul>
+					<li>
+						<div class="nav-item">
+							<i aria-hidden="true" class="fa fa-sign-out"></i> <span>Logout</span>
+						</div>
+					</li>
+				</ul></a>
+			</div>
+		</aside><!-- Create New Form Modal -->
+		<div class="reveal" data-reveal="" id="create1">
+			<h2>Please name your new document:</h2>
+			<form action="{% url 'create' document.pk %}" id="create-form" method="post" name="create-form">
+				{% csrf_token %} <input autofocus="" maxlength="25" name="name" required="" type="text"> <input name="create" type="submit" value="Create New">
+			</form>
+		</div><!-- Delete Modal -->
+		<div class="reveal" data-reveal="" id="delete1">
+			<h2>Are you sure you want to delete <span>{{ document.title }}</span>?</h2>
+			<form action="{% url 'create' document.pk %}" id="create-form" method="post" name="create-form">
+				{% csrf_token %} <button id="confirm" type="submit"><a href="{% url 'delete-doc' document.id %}">Yes, delete this document.</a></button> <button id="decline" type="submit"><a href="">No, I've changed my mind.</a></button>
+			</form>
+		</div><!-- Main Section -->
+		<main id="main">
+			<div id="blackout-on-hover"></div>
+			<header>
+				<!-- Path -->
+				<div class="nav-path">
+					<h1>{{ document.title }}<a class="delete-button" data-open="delete1" href="#"><i aria-hidden="true" class="fa fa-trash"></i></a></h1>
+					<h2>{% for document in document.get_full_path %} <span>/</span><a href="{% url 'read' document.pk %}">{{ document.title }}</a> {% endfor %}</h2>
+				</div>
+			</header><!-- Content Stage -->
+			<section id="stage">
+				<form method="post">
+					{% csrf_token %}
+					<textarea id="contentId" name="pageContent">{{ document.content }}</textarea> <input name="save" type="submit" value="Save">
+				</form>
+			</section>
+		</main>
+	</section>
+	<script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js">
+	</script>
+	<script>
+	 var simplemde = new SimpleMDE({ element: document.getElementById("contentId") });
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/what-input/5.0.3/what-input.js">
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.min.js">
+	</script>
+	<script src="{% static 'js/app.js' %}">
+	</script>
+</body>
+</html>

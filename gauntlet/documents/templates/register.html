@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Register - Gauntlet</title>
+</head>
+<body>
+	{% load static %}
+	<meta content="ie=edge" http-equiv="x-ua-compatible">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<meta charset="UTF-8">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css" rel="stylesheet">
+	<link href="{% static 'css/app.css' %}" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<section class="register" id="main">
+		<div class="index-content wrapper">
+			<h1>G</h1><!-- Create New Form -->
+			<form action="" id="create-form-login" method="post" name="create-form-login" role="form">
+				{% csrf_token %} {{ form.as_p }} <input name="register" type="submit" value="Register">
+			</form><br>
+			<br>
+			<h5><a href="{% url 'login' %}">Already have an account? Login here</a></h5>
+		</div>
+	</section>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/what-input/5.0.3/what-input.js">
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.min.js">
+	</script>
+	<script src="{% static 'js/app.js' %}">
+	</script>
+</body>
+</html>

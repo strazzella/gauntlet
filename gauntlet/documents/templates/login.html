@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Log In - Gauntlet</title>
+</head>
+<body>
+	{% load static %}
+	<meta content="ie=edge" http-equiv="x-ua-compatible">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<meta charset="UTF-8">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css" rel="stylesheet">
+	<link href="{% static 'css/app.css' %}" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<section class="login" id="main">
+		<div class="index-content wrapper">
+			<h1>G</h1><!-- Create New Form -->
+			{% if user.is_authenticated %}
+			<div class="username">
+				{% if user.is_superuser %}
+					<p>You are already logged in, <span>{{ user.username }}</span>.</p>
+				{% else %}
+					<p>You are already logged in, <span>{{ user.first_name }}</span>.</p>
+				{% endif %}
+			</div>
+			<h5><a href="{% url 'index' %}">Click to proceed</a></h5>{% else %}
+			<p>Welcome to Gauntlet! Please log in.</p>
+			<form action="" id="create-form-login" method="post" name="create-form-login">
+				{% csrf_token %} {{ form.as_p }} <input name="login" type="submit" value="Login">
+			</form><br>
+			<br>
+			<h5><a href="{% url 'register' %}">Register an account</a></h5>{% endif %}
+		</div>
+	</section>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/what-input/5.0.3/what-input.js">
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.min.js">
+	</script>
+	<script src="{% static 'js/app.js' %}">
+	</script>
+</body>
+</html>
